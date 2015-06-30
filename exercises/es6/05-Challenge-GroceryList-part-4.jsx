@@ -3,24 +3,24 @@ var React = require("react");
 // Task: Ok now the last excersise. You have to implement toggling
 //       completeness of the each grocery list's item. Make each item reactive.
 //
-//       This is why we prepared declaration of the `toggleGroceryCompleteness`
+//       This is why we prepared the declaration of the `toggleGroceryCompleteness`
 //       method in the `GroceryList` component.
 //
-//       WARNING: You should remember that we create a `grocery` items in
-//                `addGroceryItem` method. You need to add `completed` field to
-//                `grocery` objects created there.
+//       WARNING: You should remember that we create a `grocery` item in the
+//                `addGroceryItem` method. You need to add a `completed` field to
+//                the `grocery` objects created there.
 //
 // === Tasks below aren't required for proceeding in Koans, but we encourage you to try ===
 //
-// Extra Task: As you can see in `GroceryList` component - it has more than one
+// Extra Task: As you can see in the `GroceryList` component - it has more than one
 //             responsiblity. It displays groceries list, handles state
 //             modification and handles the display and logic of new grocery
 //             addition. The last of these responsibilities can be easily
 //             extracted to another component. The new component should handle
-//             only text input and submit button.
+//             only text input and the submit button.
 //
-//             Hint: You can pass callback to the component's method
-//                   (like `addGroceryItem`) as an attribute in `render` method.
+//             Hint: You can pass a callback to the component's method
+//                   (like `addGroceryItem`) as an attribute in the `render` method.
 //
 //             Warning: This task doesn't have its own tests, but current ones
 //                      should be enough to cover it. The behaviour of whole
@@ -47,8 +47,7 @@ class GroceryList extends React.Component {
           completed: false
         }
       ],
-      newGroceryName: "",
-      disableSubmit: true
+      newGroceryName: ""
     };
 
     this.addGroceryItem = this.addGroceryItem.bind(this);
@@ -57,11 +56,6 @@ class GroceryList extends React.Component {
   }
 
   inputChanged(event) {
-    if(event.target.value.length == 0) {
-      this.setState({disableSubmit: true});
-    } else {
-      this.setState({disableSubmit: false});
-    }
     this.setState({ newGroceryName: event.target.value });
   }
 
@@ -78,13 +72,10 @@ class GroceryList extends React.Component {
     this.setState({groceries: []});
   }
 
-  // Fill the definition of the following method to allow adding making complete each item
+  // Fill the definition of the following method to allow completing each item
   // Hint 1: Pay attention to the element's index on the list.
   toggleGroceryCompleteness(groceryIndex) {
-    if(this.state.groceries[groceryIndex]) {
-      this.state.groceries[groceryIndex].completed = !this.state.groceries[groceryIndex].completed;
-      this.setState({groceries: this.state.groceries});
-    }
+    // Put your code here
   }
 
   render() {
@@ -100,9 +91,9 @@ class GroceryList extends React.Component {
           />
       );
     }
-    // UI elements - constants kinda for each render they will not change.
+
     newProductInput = <input className='new-item' type="text" onChange={this.inputChanged}/>;
-    newProductAddButton = <button className='add-product' onClick={this.addGroceryItem} disabled={this.state.disableSubmit}>Add new Product</button>;
+    newProductAddButton = <button className='add-product' onClick={this.addGroceryItem}>Add new Product</button>;
     clearListButton = <button className='clear-list' onClick={this.clearList}>Clear the List</button>;
 
     return (
