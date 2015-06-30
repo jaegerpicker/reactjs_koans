@@ -108,4 +108,27 @@ describe("05 - Challenge - Grocery List", () => {
       assert.equal(groceryItem.props.className, "completed", "GroceriesListItem should be completed");
     });
   });
+
+  describe("Extra Task - Disable the add new product button if input is empty", () => {
+    beforeEach(() => {
+      var elem = document.createElement('div');
+      elem = document.body.appendChild(elem);
+      component = React.render(React.createElement(GroceryListPart4), elem);
+    });
+    it('Should disable the button if the input.length == 0', () => {
+      let groceryinput = React.addons.TestUtils.scryRenderedDOMComponentsWithClass(component, 'new-item');
+      //console.log(groceryinput);
+      let input_node = _.last(groceryinput);
+      React.addons.TestUtils.Simulate.change(input_node, {target: {value: 'test'}});
+      let groceryadd = React.addons.TestUtils.scryRenderedDOMComponentsWithClass(component, "add-product");
+      let node = _.last(groceryadd);
+      //console.log(node);
+      assert.equal(node.props.disabled, false, "The button should not be disabled");
+      React.addons.TestUtils.Simulate.change(input_node, {target: {value: ''}});
+      let groceryadd2 = React.addons.TestUtils.scryRenderedDOMComponentsWithClass(component, "add-product");
+      //console.log("2" + groceryadd2.disabled);
+      node = _.last(groceryadd2);
+      assert.equal(node.props.disabled, true, "The Button should be disabled when the input == \"\"");
+    });
+  });
 });
