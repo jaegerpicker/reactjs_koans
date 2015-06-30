@@ -1,11 +1,11 @@
 var React = require("react");
 
 // This exercise is a bit bigger than the previous ones.
-// We will make a reactive grocery list.
+// We will make reactive grocery list.
 //
 // Task: Fill the `return` of `GroceryList` render method. It should return
-//       a list of `GroceryListItem`. You need to display the groceries names
-//       using `this.props` in `GroceryListItem`. We already prepared the variable
+//       list of `GroceryListItem`. You need to display the groceries names
+//       using `this.props` in `GroceryListItem`. We already prepared variable
 //       `groceriesComponents` inside `render` method` containing list of these items for you.
 
 class GroceryList extends React.Component {
@@ -23,7 +23,7 @@ class GroceryList extends React.Component {
     // components what attributes are to HTML elements.
     //
     // Below you can see how to pass properties to child components.
-    // We have defined a `grocery` property for each `GroceryListItem`.
+    // We have defined `grocery` property for each `GroceryListItem`.
     for(var index = 0; index < this.state.groceries.length; index++) {
       groceriesComponents.push(
           <GroceryListItem
@@ -34,9 +34,13 @@ class GroceryList extends React.Component {
 
     // Hint: Don't forget about putting items into `ul`
     return (
-      <div>
-        // Put your code here
-      </div>
+      <ul>
+        {
+          this.state.groceries.map(function(gc) {
+            return <li key={gc.name}>{gc.name}</li>;
+          })
+        }
+      </ul>
     );
   }
 }

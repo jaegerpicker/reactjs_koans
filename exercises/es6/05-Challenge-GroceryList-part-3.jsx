@@ -1,16 +1,16 @@
 var React = require("react");
 
-// Task: User need to be able to clear whole grocery list in one click.
+// Task: User would need to clear whole grocery list in one click.
 //       Render a proper button under your list and implement the `clearList` method.
-//       This method should clear the `groceries` array placed in your state.
-//       This is similar to the previous task so I don't want to say any more.
+//       This method should clear `groceries` array placed in your state.
+//       This is similar to previous task so I don't want to say nothing more.
 //       Have fun.
 //
 //       Caution: Remember that you should change state only using `setState`
 //                method. The only exception of that rule is state definition
-//                in a component's class constructor.
+//                in component's class constructor.
 //
-//        Hint: Don't forget about adding the clearing list button to the
+//        Hint: Don't forget about adding clearing list button to list
 //              `GroceryList` rendering method.
 
 class GroceryList extends React.Component {
@@ -45,6 +45,7 @@ class GroceryList extends React.Component {
   // Hint: You can just simply set the groceries to an empty array.
   clearList() {
     // Put your code here
+    this.setState({groceries: []});
   }
 
   render() {
@@ -71,7 +72,7 @@ class GroceryList extends React.Component {
           {groceriesComponents}
         </ul>
         {newProductInput}
-        {newProductAddButton}
+        {newProductAddButton}{clearListButton}
       </div>
     );
   }
